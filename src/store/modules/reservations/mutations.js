@@ -5,4 +5,7 @@ export default {
   setReservations(state, payload) {
     state.reservations = payload
   },
+  removeReservation(state, id) {
+    state.reservations = state.reservations.filter(r => r.id !== id)
+  }
 }

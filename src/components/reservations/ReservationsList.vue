@@ -14,12 +14,13 @@
         </tr>
       </thead>
 
-      <tbody>
+      <tbody class="text-xl">
         <ReservationRow
           v-for="r in reservations"
           :key="r.id"
           :reservation="r"
           @details="openDetails"
+          @delete="deleteReservation"
         />
       </tbody>
     </table>
@@ -54,6 +55,9 @@ export default {
       this.selectedReservation = reservation
       this.detailsOpen = true
     },
+    async deleteReservation(id) {
+      await this.$store.dispatch('reservations/deleteReservation', id)
+    }
   },
 }
 </script>

@@ -1,9 +1,8 @@
 <template>
     <div class="min-h-screen bg-base-100 text-base-content">
       <div class="flex justify-center m-4 gap-8">
-        <StatCard :title="'Reservation'" :value="reservations.length"></StatCard>
+        <StatCard :title="'Reservations'" :value="reservations.length"></StatCard>
         <StatCard :title="'Income'" :value="totalIncome + ' $'"></StatCard>
-        <StatCard :title="'Reservation'" :value="reservations.length"></StatCard>
       </div>
       <div class="flex justify-center m-10">
         <router-link class="btn btn-xl" :to="`/add-reservation`">Add new reservation</router-link>
@@ -51,7 +50,7 @@ export default {
         this.error = error.message || 'Something went wrong'
       }
       this.isLoading = false
-    },
+    }
   },
   created() {
     this.loadReservations()

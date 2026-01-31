@@ -28,7 +28,7 @@ export default {
 
     //const token = context.rootGetters.token
 
-    const response = await fetch(API_URL, {
+    const response = await fetch(`${API_URL}.json`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(reservationData),
@@ -44,7 +44,7 @@ export default {
     context.commit('addReservation', reservationData)
   },
   async loadReservations(context, payload) {
-    const response = await fetch(API_URL)
+    const response = await fetch(`${API_URL}.json`)
     const responseData = await response.json()
 
     if (!response.ok) {
@@ -64,4 +64,15 @@ export default {
 
     context.commit('setReservations', reservations)
   },
+  async deleteReservation(context, id) {
+    const response = await fetch(`${API_URL}/${id}.json`, { 
+      method: 'DELETE',
+    })
+
+    if (!response.ok) {
+      return
+    }
+
+    context.commit('removeReservation', id)
+  }
 }

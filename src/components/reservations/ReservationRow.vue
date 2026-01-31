@@ -17,7 +17,7 @@
     <td>
       {{ guests }}
     </td>
-    <td>{{ nights }}</td>
+    <td>{{ reservation.nights }}</td>
     <td>
       {{ reservation.dateFrom }}
     </td>
@@ -27,17 +27,22 @@
     <td>
       {{ reservation.phoneNum }}
     </td>
-    <td>
-      <button class="btn btn-sm btn-primary w-full p-4" @click="$emit('details', reservation)">
-        Details
-      </button>
+    <td class="w-1">
+      <div class="flex justify-end gap-2">
+        <button class="btn btn-sm btn-primary p-4" @click="$emit('details', reservation)">
+          Details
+        </button>
+        <button class="btn btn-sm btn-error p-4" @click="$emit('delete', reservation.id)">
+          X
+        </button>
+      </div>
     </td>
   </tr>
 </template>
 
 <script>
 export default {
-  emits: ['details'],
+  emits: ['details', 'delete'],
   props: {
     reservation: {
       type: Object,
@@ -45,12 +50,6 @@ export default {
     },
   },
   computed: {
-    nights() {
-      const a = new Date(this.reservation.dateFrom)
-      const b = new Date(this.reservation.dateTo)
-      const diff = Math.round((b - a) / (1000 * 60 * 60 * 24))
-      return isNaN(diff) ? '-' : diff
-    },
     guests() {
       const guestsNum = this.reservation.guests.adults + this.reservation.guests.children
       return guestsNum
