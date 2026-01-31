@@ -29,7 +29,7 @@
           <label class="floating-label">
             <input
               type="number"
-              placeholder="Guests"
+              placeholder="Adults"
               class="input input-md"
               :class="{ 'input-error': !guests.adults.isValid }"
               @blur="clearGuestValidity('adults')"
@@ -40,7 +40,7 @@
           <label class="floating-label">
             <input
               type="number"
-              placeholder="Guests"
+              placeholder="Children"
               class="input input-md"
               :class="{ 'input-error': !guests.children.isValid }"
               @blur="clearGuestValidity('children')"
@@ -59,27 +59,41 @@
             />
             <span>Phone</span>
           </label>
-          <label class="floating-label">
+          
+          <div class="flex flex-row gap-8">
+            <label class="floating-label">
+              <input
+                type="date"
+                placeholder="Medium"
+                class="input input-md"
+                :class="{ 'input-error': !dateFrom.isValid }"
+                @blur="clearValidity('dateFrom')"
+                v-model="dateFrom.val"
+              />
+              <span>Date From</span>
+            </label>
+            <label class="floating-label">
+              <input
+                type="date"
+                placeholder="Medium"
+                class="input input-md"
+                :class="{ 'input-error': !dateTo.isValid }"
+                @blur="clearValidity('dateTo')"
+                v-model="dateTo.val"
+              />
+              <span>Date To</span>
+            </label>
+          </div>
+          <label class="floating-label w-20">
             <input
-              type="date"
-              placeholder="Medium"
+              type="text"
+              placeholder="Price"
               class="input input-md"
-              :class="{ 'input-error': !dateFrom.isValid }"
-              @blur="clearValidity('dateFrom')"
-              v-model="dateFrom.val"
+              :class="{ 'input-error': !price.isValid }"
+              v-model="price.val"
+              @blur="clearValidity('price')"
             />
-            <span>Date From</span>
-          </label>
-          <label class="floating-label">
-            <input
-              type="date"
-              placeholder="Medium"
-              class="input input-md"
-              :class="{ 'input-error': !dateTo.isValid }"
-              @blur="clearValidity('dateTo')"
-              v-model="dateTo.val"
-            />
-            <span>Date To</span>
+            <span>Price</span>
           </label>
           <p class="text-error" v-if="!formIsValid">Please fix the above errors and submit again</p>
           <div class="card-actions justify-start pt-2">
@@ -118,6 +132,10 @@ export default {
         val: '',
         isValid: true,
       },
+      price: {
+        val: '',
+        isValid: true
+      },
       dateFrom: {
         val: '',
         isValid: true,
@@ -152,6 +170,10 @@ export default {
         this.phone.isValid = false
         this.formIsValid = false
       }
+      if (this.price.val === '') {
+        this.price.isValid = false
+        this.formIsValid = false
+      }
       if (this.dateFrom.val.length === 0) {
         this.dateFrom.isValid = false
         this.formIsValid = false
@@ -176,6 +198,7 @@ export default {
           children: this.guests.children.val,
         },
         phoneNum: this.phone.val,
+        price: this.price.val,
         dateFrom: this.dateFrom.val,
         dateTo: this.dateTo.val,
       }      
