@@ -29,10 +29,10 @@
     </td>
     <td class="w-1">
       <div class="flex justify-end gap-2">
-        <button class="btn btn-sm btn-primary p-4" @click="$emit('details', reservation)">
+        <button class="btn btn-md btn-primary p-4" @click="$emit('details', reservation)">
           Details
         </button>
-        <button class="btn btn-sm btn-error p-4" @click="$emit('delete', reservation.id)">
+        <button class="btn btn-md btn-error p-4 text-lg" @click="$emit('delete', reservation.id)">
           X
         </button>
       </div>
