@@ -2,7 +2,6 @@
   <dialog ref="dlg" class="modal">
     <div class="modal-box">
       <h3 class="text-lg font-bold">{{ title }}</h3>
-
       <div v-if="reservation" class="mt-4 space-y-3">
         <div class="grid grid-cols-2 gap-2 text-sm">
           <div class="opacity-70">Lastname</div>
@@ -37,16 +36,10 @@
           </div>
         </div>
       </div>
-
       <div class="modal-action">
         <button class="btn" @click="close">Close</button>
       </div>
     </div>
-
-    <!-- klik w tło zamyka -->
-    <form method="dialog" class="modal-backdrop">
-      <button @click="close">close</button>
-    </form>
   </dialog>
 </template>
 
@@ -78,8 +71,7 @@ export default {
       return isNaN(diff) ? '-' : diff
     },
     fullCost() {
-      const fullPrice = this.nights * this.reservation.price
-      return fullPrice
+      return this.nights * this.reservation.price * (this.reservation.guests.adults + this.reservation.guests.children) 
     },
   },
 }
