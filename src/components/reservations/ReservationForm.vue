@@ -96,8 +96,13 @@
             <span>Price</span>
           </label>
           <p class="text-error" v-if="!formIsValid">Please fix the above errors and submit again</p>
-          <div class="card-actions justify-start pt-2">
-            <button class="btn btn-primary w-30" type="submit">Save</button>
+          <div class="flex flex-row gap-8">
+            <div class="card-actions justify-start pt-2">
+              <router-link to="/" class="btn btn-error w-30">Cancel</router-link>
+            </div>
+            <div class="card-actions justify-start pt-2">
+              <button class="btn btn-primary w-30" type="submit">Save</button>
+            </div>
           </div>
         </div>
       </div>
