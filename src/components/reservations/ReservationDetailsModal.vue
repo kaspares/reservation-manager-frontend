@@ -14,7 +14,7 @@
           <div class="font-medium">{{ reservation.guests.children }}</div>
 
           <div class="opacity-70">Nights</div>
-          <div class="font-medium">{{ nights }}</div>
+          <div class="font-medium">{{ reservation.nights }}</div>
 
           <div class="opacity-70">Price per person</div>
           <div class="font-medium">{{ reservation.price }} zł</div>
@@ -26,7 +26,7 @@
           <div class="font-medium">{{ reservation.dateFrom }} → {{ reservation.dateTo }}</div>
 
           <div class="opacity-70">Full cost</div>
-          <div class="font-medium">{{ fullCost }} zł</div>
+          <div class="font-medium">{{ reservation.fullCost }} zł</div>
         </div>
 
         <div>
@@ -61,17 +61,6 @@ export default {
   methods: {
     close() {
       this.$emit('update:open', false)
-    },
-  },
-  computed: {
-    nights() {
-      const a = new Date(this.reservation.dateFrom)
-      const b = new Date(this.reservation.dateTo)
-      const diff = Math.round((b - a) / (1000 * 60 * 60 * 24))
-      return isNaN(diff) ? '-' : diff
-    },
-    fullCost() {
-      return this.nights * this.reservation.price * (this.reservation.guests.adults + this.reservation.guests.children) 
     },
   },
 }

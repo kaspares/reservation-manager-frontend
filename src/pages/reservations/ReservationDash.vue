@@ -2,7 +2,7 @@
     <div class="min-h-screen bg-base-100 text-base-content">
       <div class="flex justify-center m-4 gap-8">
         <StatCard :title="'Reservation'" :value="reservations.length"></StatCard>
-        <StatCard :title="'Income'" :value="reservations.length + ' $'"></StatCard>
+        <StatCard :title="'Income'" :value="totalIncome + ' $'"></StatCard>
         <StatCard :title="'Reservation'" :value="reservations.length"></StatCard>
       </div>
       <div class="flex justify-center m-10">
@@ -35,7 +35,11 @@ export default {
     },
     hasReservations() {
       return this.$store.getters['reservations/hasReservations']
+    }, 
+    totalIncome() {
+      return this.$store.getters['reservations/totalIncome']
     }
+
 
   },
   methods: {

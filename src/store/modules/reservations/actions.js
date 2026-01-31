@@ -1,4 +1,15 @@
 const API_URL = import.meta.env.VITE_API_URL
+const nights = ((data) => {
+      const a = new Date(data.dateFrom)
+      const b = new Date(data.dateTo)
+      const diff = Math.round((b - a) / (1000 * 60 * 60 * 24))
+      return isNaN(diff) ? 0 : diff
+    })
+
+const fullCost = ((data) => {
+      return nights(data) * data.price * (data.guests.adults + data.guests.children) 
+    }) 
+
 export default {
   async addReservation(context, data) {
     const reservationData = {
@@ -8,9 +19,11 @@ export default {
       phoneNum: data.phoneNum,
       dateFrom: data.dateFrom,
       dateTo: data.dateTo,
+      nights: nights(data),
       status: data.status || 'Pending',
       comment: data.comment || '',
       price: data.price || 0,
+      fullCost: fullCost(data),
     }
 
     //const token = context.rootGetters.token
