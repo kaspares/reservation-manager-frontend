@@ -3,7 +3,7 @@
     <div class="modal-box">
       <h3 class="text-lg font-bold">{{ title }}</h3>
       <div v-if="reservation" class="mt-4 space-y-3">
-        <div class="grid grid-cols-2 gap-2 text-sm">
+        <div class="grid grid-cols-2 gap-2 text-lg">
           <div class="opacity-70">Lastname</div>
           <div class="font-medium">{{ reservation.lastName }}</div>
 
