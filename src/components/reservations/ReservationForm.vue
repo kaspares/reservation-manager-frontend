@@ -163,7 +163,7 @@ export default {
     },
     submitForm() {
       this.validateForm()
-
+    
       if (!this.formIsValid) {
         return
       }
@@ -178,11 +178,9 @@ export default {
         phoneNum: this.phone.val,
         dateFrom: this.dateFrom.val,
         dateTo: this.dateTo.val,
-      }
-      console.log('witam');
+      }      
       
       this.$emit('save-data', newReservation)
-      console.log('emit poszedł ✅');
     },
     clearValidity(input) {
       this[input].isValid = true
