@@ -1,12 +1,12 @@
 <template>
   <tr>
     <td>
-      <!-- Confirmed -->
+      <!-- Deposit -->
       <input
         type="checkbox"
         class="checkbox"
-        :checked="reservation.status === 'Confirmed'"
-        disabled
+        :checked="reservation.deposit"
+        @click.prevent="toggleDeposit(reservation)"
       />
     </td>
     <!-- Lastname-->
@@ -55,5 +55,13 @@ export default {
       return guestsNum
     },
   },
+  methods: {
+    async toggleDeposit(reservation) {
+      await this.$store.dispatch("reservations/updateDeposit", {
+        id: reservation.id,
+        deposit: !reservation.deposit
+      })
+    }
+  }
 }
 </script>

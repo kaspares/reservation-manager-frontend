@@ -3,7 +3,7 @@
     <table class="table table-zebra table-bordered">
       <thead>
         <tr>
-          <th>Confirmed</th>
+          <th>Deposit</th>
           <th>Lastname</th>
           <th>Guests</th>
           <th>Nights</th>
