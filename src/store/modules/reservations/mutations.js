@@ -7,5 +7,11 @@ export default {
   },
   removeReservation(state, id) {
     state.reservations = state.reservations.filter(r => r.id !== id)
+  },
+  setDeposit(state, payload) {
+    const reservation = state.reservations.find(r => r.id === payload.id) 
+    
+    if(!reservation) return
+    reservation.deposit = payload.deposit
   }
 }
