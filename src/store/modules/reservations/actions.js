@@ -9,7 +9,7 @@ const nights = ((data) => {
 const fullCost = ((data) => {
       return nights(data) * data.price * (data.guests.adults + data.guests.children) 
     }) 
-
+    
 export default {
   async addReservation(context, data) {
     const reservationData = {
@@ -26,9 +26,9 @@ export default {
       fullCost: fullCost(data),
     }
 
-    //const token = context.rootGetters.token
-
-    const response = await fetch(`${API_URL}.json`, {
+    const token = context.rootGetters.token
+    
+    const response = await fetch(`${API_URL}.json?auth=${token}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(reservationData),
@@ -44,7 +44,8 @@ export default {
     context.commit('addReservation', reservationData)
   },
   async loadReservations(context, payload) {
-    const response = await fetch(`${API_URL}.json`)
+    const token = context.rootGetters.token
+    const response = await fetch(`${API_URL}.json?auth=${token}`)
     const responseData = await response.json()
 
     if (!response.ok) {
@@ -66,7 +67,8 @@ export default {
     context.commit('setReservations', reservations)
   },
   async deleteReservation(context, id) {
-    const response = await fetch(`${API_URL}/${id}.json`, { 
+    const token = context.rootGetters.token
+    const response = await fetch(`${API_URL}/${id}.json?auth=${token}`, { 
       method: 'DELETE',
     })
 
@@ -78,7 +80,8 @@ export default {
     context.commit('removeReservation', id)
   },
   async updateDeposit(context, payload) {
-    const response = await fetch(`${API_URL}/${payload.id}.json`, {
+    const token = context.rootGetters.token
+    const response = await fetch(`${API_URL}/${payload.id}.json?auth=${token}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({deposit: payload.deposit})
