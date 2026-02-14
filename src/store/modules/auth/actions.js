@@ -25,5 +25,14 @@ export default {
             token: responseData.idToken
         })
 
+    },
+    tryLogin(context) {
+        const token = localStorage.getItem('token')
+
+        if (token) {
+            context.commit('setUser', {
+                token: token
+            }) 
+        }
     }
 }

@@ -5,7 +5,7 @@
             <div class="card-body gap-6 m-8">
               <h2 class="card-title justify-center text-4xl">Login</h2>
               <label class="floating-label">
-                <input class="input validator" type="email" required placeholder="mail@site.com" v-model="email" />
+                <input class="input" type="email" required placeholder="mail@site.com" v-model="email" />
               </label>
                <label class="floating-label">
                 <input
@@ -16,11 +16,11 @@
                 />
                 <span>Password</span>
               </label>
+              <p class="text-center text-error" :show="!!error"> {{ error }}</p>
                 <div class="card-actions justify-start pt-2">
                   <button class="btn btn-primary w-30" type="submit">Login</button>
                 </div>
-            </div>
-            <p :show="!!error"> {{ error }}</p>
+              </div>
           </div>
         </div>
     </form>
@@ -49,7 +49,7 @@ export default {
 
          }
          catch(err) {
-            this.error = err.message || 'Failed to authenticate, try later'
+            this.error =  'Failed to authenticate, try later'
          }
         }
     }
